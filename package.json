@@ -1,11 +1,15 @@
 {
   "name": "naurok_parser_back",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "app.ts",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
-    "start": "node ./src/app",
-    "dev": "nodemon ./src/app",
+    "start": "node app.ts",
+    "dev": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
