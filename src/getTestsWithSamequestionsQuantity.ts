@@ -1,6 +1,6 @@
-import { testType } from './types';
+// import { testType } from './types';
 
-const getTestsWithSamequestionsQuantity = (input: testType[][], NumberOfQuestions: string) => {
+const getTestsWithSamequestionsQuantity = (input: any, NumberOfQuestions: string) => {
 	const res = [];
 	input.map((page) => {
 		page.map((test) => {

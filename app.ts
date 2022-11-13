@@ -1,5 +1,4 @@
-import getTests from './src/getTests';
-import getAnswers from './src/getAnswers';
+const getAnswers = require('./src/getAnswers');
 const express = require('express');
 
 const app = express();
