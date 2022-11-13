@@ -3,7 +3,7 @@ import getAnswers from './src/getAnswers';
 const express = require('express');
 
 const app = express();
-const hostName = '0.0.0.1';
+const hostName = '0.0.0.0';
 const port = process.env.PORT || 3000;
 
 app.get('/', async (req, res) => {
