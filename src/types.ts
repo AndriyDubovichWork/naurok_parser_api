@@ -1,5 +1,5 @@
 export type testType = {
-  questionsNumber: string;
-  linkText: string;
-  link: string;
+	questionsQuantity: string;
+	linkText: string;
+	link: string;
 };

@@ -3,14 +3,15 @@ import getAnswers from './src/getAnswers';
 const express = require('express');
 
 const app = express();
-const hostName = '0.0.0.0';
 const port = process.env.PORT || 3000;
 
 app.get('/', async (req, res) => {
-	res.send(await getAnswers());
+	const { topic, grade, subjectID, questionsQuantity } = req.query;
+
+	res.send(await getAnswers(topic, grade, subjectID, questionsQuantity));
 });
 
-app.listen(port, hostName, () => {
+app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`);
 });
 

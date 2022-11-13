@@ -1,19 +1,24 @@
 const puppeteer = require('puppeteer');
 import getAllPages from './getAllPages';
 import getMatchedByQuestion from './getMatchedByQuestion';
-import getTestsWithSameQuestionsNumber from './getTestsWithSameQuestionsNumber';
+import getTestsWithSamequestionsQuantity from './getTestsWithSamequestionsQuantity';
 
-const getAnswers = async () => {
+const getAnswers = async (
+	topic: string,
+	grade: string,
+	subjectID: string,
+	questionsQuantity: string
+) => {
 	const browser = await puppeteer.launch();
 	const page = await browser.newPage();
 
-	const AllPagesData = await getAllPages(page, 'україна в умовах десталінізації', '11', '8');
+	const AllPagesData = await getAllPages(page, topic, grade, subjectID);
 	if (AllPagesData === 'error') {
 		return 'error';
 	}
-	const TestsWithCorrectQuestionsQuantity = await getTestsWithSameQuestionsNumber(
+	const TestsWithCorrectQuestionsQuantity = await getTestsWithSamequestionsQuantity(
 		AllPagesData,
-		'23'
+		questionsQuantity
 	);
 
 	// const matched = await getMatchedByQuestion(
