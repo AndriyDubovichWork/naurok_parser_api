@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
-const getAllPages = require('./getAllPages');
+import getAllPages from './getAllPages';
 const getMatchedByQuestion = require('./getMatchedByQuestion');
-const getTestsWithSamequestionsQuantity = require('./getTestsWithSamequestionsQuantity');
+import getTestsWithSamequestionsQuantity from './getTestsWithSamequestionsQuantity';
 
 const getAnswers = async (
 	topic: string,

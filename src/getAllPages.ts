@@ -1,4 +1,4 @@
-const getTests = require('./getTests');
+import getTests from './getTests';
 
 const getAllPages = async (page: any, query: string, grade: string, subjectId: string) => {
 	let pageNumber = 1;
