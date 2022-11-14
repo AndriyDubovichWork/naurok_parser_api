@@ -1,4 +1,5 @@
-const getAnswers = require('./src/getAnswers');
+import getTests from './src/getTests';
+import getAnswers from './src/getAnswers';
 const express = require('express');
 
 const app = express();
@@ -6,8 +7,11 @@ const port = process.env.PORT || 3000;
 
 app.get('/', async (req, res) => {
 	const { topic, grade, subjectID, questionsQuantity } = req.query;
-
-	res.send(await getAnswers(topic, grade, subjectID, questionsQuantity));
+	if (!topic || !grade || !subjectID || !questionsQuantity) {
+		res.send('incorrect request');
+	} else {
+		res.send(await getAnswers(topic, grade, subjectID, questionsQuantity));
+	}
 });
 
 app.listen(port, () => {
