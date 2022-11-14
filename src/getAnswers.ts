@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 import getAllPages from './getAllPages';
-const getMatchedByQuestion = require('./getMatchedByQuestion');
+// const getMatchedByQuestion = require('./getMatchedByQuestion');
 import getTestsWithSamequestionsQuantity from './getTestsWithSamequestionsQuantity';
 
 const getAnswers = async (

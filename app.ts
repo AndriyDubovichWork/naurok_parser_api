@@ -1,4 +1,4 @@
-import getTests from './src/getTests';
+// import getTests from './src/getTests';
 import getAnswers from './src/getAnswers';
 const express = require('express');
 

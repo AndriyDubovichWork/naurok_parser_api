@@ -9,6 +9,9 @@
 	"scripts": {
 		"start": "node app.ts",
 		"dev": "nodemon app",
+		"build": "tsc app.ts",
+		"startJS": "node app.js",
+		"buildNStart": "yarn build & yarn startJS",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
