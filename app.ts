@@ -5,7 +5,9 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/', async (req, res) => {
+app.use(express.json());
+
+app.get(['/', '/api'], async (req, res) => {
 	const { topic, grade, subjectID, questionsQuantity } = req.query;
 	if (!topic || !grade || !subjectID || !questionsQuantity) {
 		res.send('incorrect request');
