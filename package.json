@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"start": "yarn dev",
-		"dev": "nodemon app",
+		"dev": "nodemon app.ts",
 		"build": "tsc app.ts",
 		"startJS": "node app.js",
 		"buildNStart": "yarn build & yarn startJS",
