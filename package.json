@@ -7,8 +7,9 @@
 		"node": "18.x"
 	},
 	"scripts": {
-		"start": "node app.js",
+		"start": "yarn build && yarn startJS",
 		"dev": "nodemon app.ts",
+		"preDeploy": "yarn build && yarn startJS",
 		"build": "tsc app.ts",
 		"startJS": "node app.js",
 		"buildNStart": "yarn build & yarn startJS",
