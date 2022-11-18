@@ -7,7 +7,7 @@
 		"node": "18.x"
 	},
 	"scripts": {
-		"start": "yarn build && yarn startJS",
+		"start": "node app.js",
 		"dev": "nodemon app.ts",
 		"build": "tsc app.ts",
 		"startJS": "node app.js",
