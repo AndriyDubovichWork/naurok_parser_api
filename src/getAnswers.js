@@ -44,7 +44,10 @@ var getAnswers = function (topic, grade, subjectID, questionsQuantity) { return 
     var browser, page, AllPagesData, TestsWithCorrectQuestionsQuantity;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, puppeteer.launch()];
+            case 0: return [4 /*yield*/, puppeteer.launch({
+                    headless: false,
+                    args: ['--no-sandbox']
+                })];
             case 1:
                 browser = _a.sent();
                 return [4 /*yield*/, browser.newPage()];
