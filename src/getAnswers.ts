@@ -9,14 +9,14 @@ const getAnswers = async (
 	subjectID: string,
 	questionsQuantity: string
 ) => {
-	const xvfb = new Xvfb();
+	const xvfb = new Xvfb({
+		silent: true,
+		xvfb_args: ['-screen', '0', '1280x720x24', '-ac'],
+	});
 	xvfb.startSync();
 	const browser = await puppeteer.launch({
 		headless: false,
-		args: ['--no-sandbox'],
-		env: {
-			DISPLAY: ':10.0',
-		},
+		args: ['--no-sandbox', '--start-fullscreen', '--display=' + xvfb._display],
 	});
 	const page = await browser.newPage();
 
