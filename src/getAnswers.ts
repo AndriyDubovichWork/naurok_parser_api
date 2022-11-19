@@ -9,11 +9,11 @@ const getAnswers = async (
 	subjectID: string,
 	questionsQuantity: string
 ) => {
-	const xvfb = await new Xvfb({
+	const xvfb = new Xvfb({
 		silent: true,
 		xvfb_args: ['-screen', '0', '1280x720x24', '-ac'],
 	});
-	await xvfb.start();
+	xvfb.startSync();
 	const browser = await puppeteer.launch({
 		headless: false,
 		args: ['--no-sandbox', '--start-fullscreen', '--display=' + xvfb._display],
@@ -36,7 +36,7 @@ const getAnswers = async (
 	// );
 	// console.log(matched);
 	browser.close();
-	xvfb.stop();
+	xvfb.stopSync();
 	return TestsWithCorrectQuestionsQuantity;
 };
 export default getAnswers;
