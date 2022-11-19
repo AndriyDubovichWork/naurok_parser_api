@@ -28,6 +28,7 @@
 		"nodemon": "^2.0.20",
 		"puppeteer": "^19.2.2",
 		"puppeteer-core": "^19.2.2",
-		"ts-node": "^10.9.1"
+		"ts-node": "^10.9.1",
+		"xvfb": "^0.4.0"
 	}
 }
