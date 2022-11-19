@@ -12,6 +12,9 @@ const getAnswers = async (
 	const browser = await puppeteer.launch({
 		headless: false,
 		args: ['--no-sandbox'],
+		env: {
+			DISPLAY: ':10.0',
+		},
 	});
 	const page = await browser.newPage();
 
