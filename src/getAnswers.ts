@@ -13,9 +13,10 @@ const getAnswers = async (
 		silent: true,
 		xvfb_args: ['-screen', '0', '1280x720x24', '-ac'],
 	});
-	xvfb.startSync();
+	xvfb.start();
 	const browser = await puppeteer.launch({
 		headless: false,
+		defaultViewport: null,
 		args: ['--no-sandbox', '--start-fullscreen', '--display=' + xvfb._display],
 	});
 	const page = await browser.newPage();
@@ -36,7 +37,7 @@ const getAnswers = async (
 	// );
 	// console.log(matched);
 	browser.close();
-	xvfb.stopSync();
+	xvfb.stop();
 	return TestsWithCorrectQuestionsQuantity;
 };
 export default getAnswers;

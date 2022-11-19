@@ -41,7 +41,7 @@ var getAnswers_1 = require("./src/getAnswers");
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
-var link = '0.0.0.0';
+// const link = '0.0.0.0';
 app.use(express.json());
 app.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, topic, grade, subjectID, questionsQuantity, _b, _c;
@@ -62,7 +62,7 @@ app.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, func
         }
     });
 }); });
-app.listen(port, link, function () {
-    console.log("Example app listening on port ".concat(link, ":").concat(port));
+app.listen(port, function () {
+    console.log("Example app listening on port".concat(port));
 });
 ('http://localhost:3000/?topic=%D1%83%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B0%20%D0%B2%20%D1%83%D0%BC%D0%BE%D0%B2%D0%B0%D1%85%20%D0%B4%D0%B5%D1%81%D1%82%D0%B0%D0%BB%D1%96%D0%BD%D1%96%D0%B7%D0%B0%D1%86%D1%96%D1%97&grade=11&subjectID=8&questionsQuantity=23');

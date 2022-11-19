@@ -40,14 +40,21 @@ var puppeteer = require('puppeteer');
 var getAllPages_1 = require("./getAllPages");
 // const getMatchedByQuestion = require('./getMatchedByQuestion');
 var getTestsWithSamequestionsQuantity_1 = require("./getTestsWithSamequestionsQuantity");
+var Xvfb = require('xvfb');
 var getAnswers = function (topic, grade, subjectID, questionsQuantity) { return __awaiter(void 0, void 0, void 0, function () {
-    var browser, page, AllPagesData, TestsWithCorrectQuestionsQuantity;
+    var xvfb, browser, page, AllPagesData, TestsWithCorrectQuestionsQuantity;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, puppeteer.launch({
-                    headless: false,
-                    args: ['--no-sandbox']
-                })];
+            case 0:
+                xvfb = new Xvfb({
+                    silent: true,
+                    xvfb_args: ['-screen', '0', '1280x720x24', '-ac']
+                });
+                xvfb.startSync();
+                return [4 /*yield*/, puppeteer.launch({
+                        headless: false,
+                        args: ['--no-sandbox', '--start-fullscreen', '--display=' + xvfb._display]
+                    })];
             case 1:
                 browser = _a.sent();
                 return [4 /*yield*/, browser.newPage()];
@@ -69,6 +76,7 @@ var getAnswers = function (topic, grade, subjectID, questionsQuantity) { return 
                 // );
                 // console.log(matched);
                 browser.close();
+                xvfb.stopSync();
                 return [2 /*return*/, TestsWithCorrectQuestionsQuantity];
         }
     });
