@@ -45,9 +45,9 @@ var getAnswers = function (topic, grade, subjectID, questionsQuantity) { return 
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, puppeteer.launch({
-                    headless: false,
+                    headless: true,
                     defaultViewport: null,
-                    args: ['--no-sandbox']
+                    args: ['--no-sandbox', '--headless']
                 })];
             case 1:
                 browser = _a.sent();

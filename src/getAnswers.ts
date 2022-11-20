@@ -10,9 +10,9 @@ const getAnswers = async (
 	questionsQuantity: string
 ) => {
 	const browser = await puppeteer.launch({
-		headless: false,
+		headless: true,
 		defaultViewport: null,
-		args: ['--no-sandbox'],
+		args: ['--no-sandbox', '--headless'],
 	});
 	const page = await browser.newPage();
 

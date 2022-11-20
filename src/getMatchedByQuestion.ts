@@ -3,7 +3,7 @@
 const getMatchedByQuestion = async (page: any, tests: any, question: string) => {
 	const res = [];
 	await tests.map(async (test) => {
-		console.log(test.link);
+		// console.log(test.link);
 		await page.goto(test.link);
 		const [questionsElement] = await page.$x('/html/body/div[3]/div[1]/div/div[2]/div[4]/div[1]');
 		if (!questionsElement) {
