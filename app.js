@@ -48,6 +48,7 @@ app.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, func
     return __generator(this, function (_d) {
         switch (_d.label) {
             case 0:
+                console.log(getAnswers_1["default"]);
                 _a = req.query, topic = _a.topic, grade = _a.grade, subjectID = _a.subjectID, questionsQuantity = _a.questionsQuantity;
                 if (!(!topic || !grade || !subjectID || !questionsQuantity)) return [3 /*break*/, 1];
                 res.send('incorrect request');

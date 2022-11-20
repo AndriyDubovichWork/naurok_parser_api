@@ -7,7 +7,7 @@
 		"node": "18.x"
 	},
 	"scripts": {
-		"start": "yarn build && sudo apt-get install xvfb && yarn startJS",
+		"start": "yarn build && yarn startJS",
 		"dev": "nodemon app.ts",
 		"preDeploy": "yarn build && yarn startJS",
 		"build": "tsc app.ts",
