@@ -13,8 +13,6 @@ app.get('/', async (req, res) => {
 	if (!topic || !grade || !subjectID || !questionsQuantity) {
 		res.send('incorrect request');
 	} else {
-		app.use(await getAnswers(topic, grade, subjectID, questionsQuantity));
-
 		res.send(await getAnswers(topic, grade, subjectID, questionsQuantity));
 	}
 });
