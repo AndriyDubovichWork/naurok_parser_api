@@ -41,8 +41,17 @@ var getAnswers_1 = require("./src/getAnswers");
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
+var cors = require('cors');
 // const link = '0.0.0.0';
 app.use(express.json());
+app.use(cors());
+var allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type,token');
+    next();
+};
+app.use(allowCrossDomain);
 app.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, topic, grade, subjectID, questionsQuantity, _b, _c;
     return __generator(this, function (_d) {

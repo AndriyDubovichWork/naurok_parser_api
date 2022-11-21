@@ -4,10 +4,19 @@ const express = require('express');
 
 const app = express();
 const port = process.env.PORT || 3000;
+const cors = require('cors');
 // const link = '0.0.0.0';
 
 app.use(express.json());
 
+app.use(cors());
+var allowCrossDomain = function (req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+	res.header('Access-Control-Allow-Headers', 'Content-Type,token');
+	next();
+};
+app.use(allowCrossDomain);
 app.get('/', async (req, res) => {
 	const { topic, grade, subjectID, questionsQuantity } = req.query;
 	if (!topic || !grade || !subjectID || !questionsQuantity) {
