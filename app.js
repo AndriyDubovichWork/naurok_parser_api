@@ -71,6 +71,12 @@ app.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, func
         }
     });
 }); });
+app.get('/subjects', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        res.send('incorrect request');
+        return [2 /*return*/];
+    });
+}); });
 app.listen(port, function () {
     console.log("Example app listening on port".concat(port));
 });
