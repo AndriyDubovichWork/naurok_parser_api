@@ -13,14 +13,20 @@ const getSubjects = async () => {
 	);
 
 	const Subjects = await page.evaluate(() => {
-		const AllCheckBoxesTags = Array.from(document.querySelectorAll('.subject-checkbox'));
+		let AllLabelsTags = Array.from(document.querySelectorAll('.content-block .checkbox div label'));
 
-		return AllCheckBoxesTags.map((subject) => {
-			return subject.textContent;
+		const SubjectCheckBoxes = Array.from(document.querySelectorAll('input.subject-checkbox'));
+
+		return SubjectCheckBoxes.map((CheckBoxID, id) => {
+			const matchingCheckBoxID = id + 13;
+			if (AllLabelsTags[matchingCheckBoxID]) {
+				return {
+					subject: AllLabelsTags[matchingCheckBoxID].textContent.slice(1),
+					id: CheckBoxID.getAttribute('value'),
+				};
+			}
 		});
 	});
-
-	console.log(Subjects);
 
 	return Subjects;
 };
