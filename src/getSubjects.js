@@ -36,61 +36,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-// import getTests from './src/getTests';
-var getAnswers_1 = require("./src/getAnswers");
-var getSubjects_1 = require("./src/getSubjects");
-var express = require('express');
-var app = express();
-var port = process.env.PORT || 3000;
-var cors = require('cors');
-// const link = '0.0.0.0';
-process.setMaxListeners(40);
-app.use(express.json());
-app.use(cors());
-var allowCrossDomain = function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type,token');
-    next();
-};
-app.use(allowCrossDomain);
-app.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, topic, grade, subjectID, questionsQuantity, _b, _c;
-    return __generator(this, function (_d) {
-        switch (_d.label) {
-            case 0:
-                _a = req.query, topic = _a.topic, grade = _a.grade, subjectID = _a.subjectID, questionsQuantity = _a.questionsQuantity;
-                if (!(!topic || !grade || !subjectID || !questionsQuantity)) return [3 /*break*/, 1];
-                res.send('incorrect request');
-                return [3 /*break*/, 3];
-            case 1:
-                _c = (_b = res).send;
-                return [4 /*yield*/, (0, getAnswers_1["default"])(topic, grade, subjectID, questionsQuantity)];
-            case 2:
-                _c.apply(_b, [_d.sent()]);
-                _d.label = 3;
-            case 3: return [2 /*return*/];
-        }
-    });
-}); });
-app.get('/subjects', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var resoult;
+var puppeteer = require('puppeteer');
+var getSubjects = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var browser, page, Subjects;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, getSubjects_1["default"])()];
+            case 0: return [4 /*yield*/, puppeteer.launch({
+                    headless: true,
+                    defaultViewport: null,
+                    args: ['--no-sandbox', '--headless']
+                })];
             case 1:
-                resoult = _a.sent();
-                if (resoult) {
-                    res.send(resoult);
-                }
-                else {
-                    res.send('error');
-                }
-                return [2 /*return*/];
+                browser = _a.sent();
+                return [4 /*yield*/, browser.newPage()];
+            case 2:
+                page = _a.sent();
+                return [4 /*yield*/, page.goto('https://naurok.com.ua/site/search-resources?q=%D0%B0%D0%B4%D0%B0%D0%BF%D1%82%D0%B0%D1%86%D1%96%D1%8F&type%5B%5D=test&grade%5B%5D=11&subject%5B%5D=3')];
+            case 3:
+                _a.sent();
+                return [4 /*yield*/, page.evaluate(function () {
+                        var AllLabelsTags = Array.from(document.querySelectorAll('.content-block .checkbox div label'));
+                        var SubjectCheckBoxes = Array.from(document.querySelectorAll('input.subject-checkbox'));
+                        return SubjectCheckBoxes.map(function (CheckBoxID, id) {
+                            var matchingCheckBoxID = id + 13;
+                            if (AllLabelsTags[matchingCheckBoxID]) {
+                                return {
+                                    subject: AllLabelsTags[matchingCheckBoxID].textContent.slice(1),
+                                    id: CheckBoxID.getAttribute('value')
+                                };
+                            }
+                        });
+                    })];
+            case 4:
+                Subjects = _a.sent();
+                return [2 /*return*/, Subjects];
         }
     });
-}); });
-app.listen(port, function () {
-    console.log("Example app listening on port:".concat(port));
-});
-('http://localhost:3000/?topic=%D1%83%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B0%20%D0%B2%20%D1%83%D0%BC%D0%BE%D0%B2%D0%B0%D1%85%20%D0%B4%D0%B5%D1%81%D1%82%D0%B0%D0%BB%D1%96%D0%BD%D1%96%D0%B7%D0%B0%D1%86%D1%96%D1%97&grade=11&subjectID=8&questionsQuantity=23');
+}); };
+exports["default"] = getSubjects;
