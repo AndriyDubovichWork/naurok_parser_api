@@ -44,7 +44,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 var cors = require('cors');
 // const link = '0.0.0.0';
-process.setMaxListeners(40);
+process.setMaxListeners(4000);
 app.use(express.json());
 app.use(cors());
 var allowCrossDomain = function (req, res, next) {
