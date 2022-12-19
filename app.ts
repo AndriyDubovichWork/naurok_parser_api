@@ -32,7 +32,7 @@ app.get('/subjects', async (req, res) => {
 	if (resoult) {
 		res.send(resoult);
 	} else {
-		res.send('error');
+		res.send('error not found');
 	}
 });
 

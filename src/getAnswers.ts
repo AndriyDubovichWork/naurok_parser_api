@@ -17,8 +17,8 @@ const getAnswers = async (
 	const page = await browser.newPage();
 
 	const AllPagesData = await getAllPages(page, topic, grade, subjectID);
-	if (AllPagesData === 'error') {
-		return 'error';
+	if (typeof AllPagesData === 'string') {
+		return AllPagesData;
 	}
 	const TestsWithCorrectQuestionsQuantity = await getTestsWithSamequestionsQuantity(
 		AllPagesData,
