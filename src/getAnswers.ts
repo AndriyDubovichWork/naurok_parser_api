@@ -17,6 +17,8 @@ const getAnswers = async (
 	const page = await browser.newPage();
 
 	const AllPagesData = await getAllPages(page, topic, grade, subjectID);
+	console.log(AllPagesData);
+
 	if (typeof AllPagesData === 'string') {
 		return AllPagesData;
 	}
