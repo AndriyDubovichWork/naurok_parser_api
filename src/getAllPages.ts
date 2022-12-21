@@ -16,15 +16,14 @@ const getAllPages = async (page: any, query: string, grade: string, subjectId: s
 		PropperArrowClass = await arrowClass.jsonValue();
 
 		allTests.push(await getTests(page));
+		// console.log(pageNumber);
 		pageNumber++;
-		console.log(pageNumber);
-		if (!PropperArrowClass) {
-			//single page
+		// if (!PropperArrowClass) {
+		// 	//single page
 
-			break;
-		}
+		// 	break;
+		// }
 	}
-	console.log('tests', allTests);
 
 	return allTests;
 };

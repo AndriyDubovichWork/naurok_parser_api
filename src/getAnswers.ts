@@ -15,9 +15,9 @@ const getAnswers = async (
 		args: ['--no-sandbox', '--headless'],
 	});
 	const page = await browser.newPage();
-
+	await page.setDefaultNavigationTimeout(0);
 	const AllPagesData = await getAllPages(page, topic, grade, subjectID);
-	console.log(AllPagesData);
+	// console.log(AllPagesData[0][0]);
 
 	if (typeof AllPagesData === 'string') {
 		return AllPagesData;

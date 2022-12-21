@@ -51,8 +51,11 @@ var getSubjects = function () { return __awaiter(void 0, void 0, void 0, functio
                 return [4 /*yield*/, browser.newPage()];
             case 2:
                 page = _a.sent();
-                return [4 /*yield*/, page.goto('https://naurok.com.ua/site/search-resources?q=%D0%B0%D0%B4%D0%B0%D0%BF%D1%82%D0%B0%D1%86%D1%96%D1%8F&type%5B%5D=test&grade%5B%5D=11&subject%5B%5D=3')];
+                return [4 /*yield*/, page.setDefaultNavigationTimeout(0)];
             case 3:
+                _a.sent();
+                return [4 /*yield*/, page.goto('https://naurok.com.ua/site/search-resources?q=%D0%B0%D0%B4%D0%B0%D0%BF%D1%82%D0%B0%D1%86%D1%96%D1%8F&type%5B%5D=test&grade%5B%5D=11&subject%5B%5D=3')];
+            case 4:
                 _a.sent();
                 return [4 /*yield*/, page.evaluate(function () {
                         var AllLabelsTags = Array.from(document.querySelectorAll('.content-block .checkbox div label'));
@@ -67,7 +70,7 @@ var getSubjects = function () { return __awaiter(void 0, void 0, void 0, functio
                             }
                         });
                     })];
-            case 4:
+            case 5:
                 Subjects = _a.sent();
                 return [2 /*return*/, Subjects];
         }

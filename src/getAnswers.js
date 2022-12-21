@@ -54,14 +54,18 @@ var getAnswers = function (topic, grade, subjectID, questionsQuantity) { return 
                 return [4 /*yield*/, browser.newPage()];
             case 2:
                 page = _a.sent();
-                return [4 /*yield*/, (0, getAllPages_1["default"])(page, topic, grade, subjectID)];
+                return [4 /*yield*/, page.setDefaultNavigationTimeout(0)];
             case 3:
+                _a.sent();
+                return [4 /*yield*/, (0, getAllPages_1["default"])(page, topic, grade, subjectID)];
+            case 4:
                 AllPagesData = _a.sent();
+                // console.log(AllPagesData[0][0]);
                 if (typeof AllPagesData === 'string') {
                     return [2 /*return*/, AllPagesData];
                 }
                 return [4 /*yield*/, (0, getTestsWithSamequestionsQuantity_1["default"])(AllPagesData, questionsQuantity)];
-            case 4:
+            case 5:
                 TestsWithCorrectQuestionsQuantity = _a.sent();
                 // const matched = await getMatchedByQuestion(
                 //   page,

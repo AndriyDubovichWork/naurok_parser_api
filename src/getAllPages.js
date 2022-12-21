@@ -38,46 +38,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var getTests_1 = require("./getTests");
 var getAllPages = function (page, query, grade, subjectId) { return __awaiter(void 0, void 0, void 0, function () {
-    var pageNumber, allTests, PropperArrowClass, url, nextPageArrow, _a, _b, arrowClass, _c, _d;
-    return __generator(this, function (_e) {
-        switch (_e.label) {
+    var pageNumber, allTests, PropperArrowClass, url, nextPageArrow, arrowClass, _a, _b;
+    return __generator(this, function (_c) {
+        switch (_c.label) {
             case 0:
                 pageNumber = 1;
                 allTests = [];
                 PropperArrowClass = '';
-                _e.label = 1;
+                _c.label = 1;
             case 1:
-                if (!(PropperArrowClass !== 'next disabled')) return [3 /*break*/, 9];
+                if (!(PropperArrowClass !== 'next disabled')) return [3 /*break*/, 7];
                 url = "https://naurok.com.ua/site/search-resources?q=".concat(query, "&type%5B%5D=test&grade%5B%5D=").concat(grade, "&subject%5B%5D=").concat(subjectId, "&page=").concat(pageNumber);
                 return [4 /*yield*/, page.goto(url)];
             case 2:
-                _e.sent();
+                _c.sent();
                 return [4 /*yield*/, page.$x('/html/body/div[3]/div/div/div[1]/div[2]/ul/li[12]')];
             case 3:
-                nextPageArrow = (_e.sent())[0];
-                if (!!nextPageArrow) return [3 /*break*/, 5];
-                //single page
+                nextPageArrow = (_c.sent())[0];
+                return [4 /*yield*/, nextPageArrow.getProperty('className')];
+            case 4:
+                arrowClass = _c.sent();
+                return [4 /*yield*/, arrowClass.jsonValue()];
+            case 5:
+                PropperArrowClass = _c.sent();
                 _b = (_a = allTests).push;
                 return [4 /*yield*/, (0, getTests_1["default"])(page)];
-            case 4:
-                //single page
-                _b.apply(_a, [_e.sent()]);
-                return [3 /*break*/, 9];
-            case 5: return [4 /*yield*/, nextPageArrow.getProperty('className')];
             case 6:
-                arrowClass = _e.sent();
-                return [4 /*yield*/, arrowClass.jsonValue()];
-            case 7:
-                PropperArrowClass = _e.sent();
-                _d = (_c = allTests).push;
-                return [4 /*yield*/, (0, getTests_1["default"])(page)];
-            case 8:
-                _d.apply(_c, [_e.sent()]);
+                _b.apply(_a, [_c.sent()]);
+                console.log(pageNumber);
                 pageNumber++;
                 return [3 /*break*/, 1];
-            case 9: 
-            // console.log(allTests);
-            return [2 /*return*/, allTests];
+            case 7: return [2 /*return*/, allTests];
         }
     });
 }); };
