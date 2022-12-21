@@ -16,23 +16,22 @@ const getAnswers = async (
 	});
 	const page = await browser.newPage();
 	await page.setDefaultNavigationTimeout(0);
+
+	// get all tests links by request
+
 	const AllPagesData = await getAllPages(page, topic, grade, subjectID);
-	// console.log(AllPagesData[0][0]);
 
 	if (typeof AllPagesData === 'string') {
 		return AllPagesData;
 	}
+
+	// get tests with same questions quantity
+
 	const TestsWithCorrectQuestionsQuantity = await getTestsWithSamequestionsQuantity(
 		AllPagesData,
 		questionsQuantity
 	);
 
-	// const matched = await getMatchedByQuestion(
-	//   page,
-	//   TestsWithCorrectQuestionsQuantity,
-	//   'Здатність організмів'
-	// );
-	// console.log(matched);
 	browser.close();
 	return TestsWithCorrectQuestionsQuantity;
 };

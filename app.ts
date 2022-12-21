@@ -11,6 +11,8 @@ process.setMaxListeners(4000);
 
 app.use(express.json());
 
+//CORS
+
 app.use(
 	cors({
 		origin: 'http://localhost',
@@ -23,19 +25,39 @@ const allowCrossDomain = function (req, res, next) {
 	next();
 };
 app.use(allowCrossDomain);
+
+//Get answers
+
 app.get('/', async (req, res) => {
 	const { topic, grade, subjectID, questionsQuantity } = req.query;
+
+	//check for correct input
 	if (!topic || !grade || !subjectID || !questionsQuantity) {
+		res.status(400);
 		res.send('incorrect request');
 	} else {
-		res.send(await getAnswers(topic, grade, subjectID, questionsQuantity));
+		const answers = await getAnswers(topic, grade, subjectID, questionsQuantity);
+
+		if (answers.length > 0) {
+			res.status(200);
+			res.send(answers);
+		} else {
+			res.status(502);
+			res.send('could not find anything');
+		}
 	}
 });
+
+//get subjects
+
 app.get('/subjects', async (req, res) => {
 	const resoult = await getSubjects();
+	// check for correct respond
 	if (resoult) {
+		res.status(200);
 		res.send(resoult);
 	} else {
+		res.status(404);
 		res.send('error not found');
 	}
 });
@@ -43,4 +65,3 @@ app.get('/subjects', async (req, res) => {
 app.listen(port, () => {
 	console.log(`Example app listening on port:${port}`);
 });
-('http://localhost:3000/?topic=%D1%83%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B0%20%D0%B2%20%D1%83%D0%BC%D0%BE%D0%B2%D0%B0%D1%85%20%D0%B4%D0%B5%D1%81%D1%82%D0%B0%D0%BB%D1%96%D0%BD%D1%96%D0%B7%D0%B0%D1%86%D1%96%D1%97&grade=11&subjectID=8&questionsQuantity=23');
