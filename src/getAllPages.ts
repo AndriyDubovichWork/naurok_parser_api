@@ -11,18 +11,16 @@ const getAllPages = async (page: any, query: string, grade: string, subjectId: s
 		await page.goto(url);
 
 		const [nextPageArrow] = await page.$x('/html/body/div[3]/div/div/div[1]/div[2]/ul/li[12]');
+		if (!nextPageArrow) {
+			allTests.push(await getTests(page));
+			pageNumber++;
+			break;
+		}
 		const arrowClass = await nextPageArrow.getProperty('className');
 
 		PropperArrowClass = await arrowClass.jsonValue();
-
 		allTests.push(await getTests(page));
-		// console.log(pageNumber);
 		pageNumber++;
-		// if (!PropperArrowClass) {
-		// 	//single page
-
-		// 	break;
-		// }
 	}
 
 	return allTests;
