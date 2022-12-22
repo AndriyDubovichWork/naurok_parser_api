@@ -46,6 +46,7 @@ var cors = require('cors');
 // const link = '0.0.0.0';
 process.setMaxListeners(4000);
 app.use(express.json());
+//CORS
 app.use(cors({
     origin: 'http://localhost'
 }));
@@ -56,25 +57,41 @@ var allowCrossDomain = function (req, res, next) {
     next();
 };
 app.use(allowCrossDomain);
+//Get answers
 app.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, topic, grade, subjectID, questionsQuantity, _b, _c;
-    return __generator(this, function (_d) {
-        switch (_d.label) {
+    var _a, topic, grade, subjectID, questionsQuantity, answers;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
                 _a = req.query, topic = _a.topic, grade = _a.grade, subjectID = _a.subjectID, questionsQuantity = _a.questionsQuantity;
                 if (!(!topic || !grade || !subjectID || !questionsQuantity)) return [3 /*break*/, 1];
-                res.send('incorrect request');
-                return [3 /*break*/, 3];
+                //check for missing parameters
+                res.status(400);
+                res.send('incorrect request (missing some parameters)');
+                return [3 /*break*/, 4];
             case 1:
-                _c = (_b = res).send;
-                return [4 /*yield*/, (0, getAnswers_1["default"])(topic, grade, subjectID, questionsQuantity)];
-            case 2:
-                _c.apply(_b, [_d.sent()]);
-                _d.label = 3;
-            case 3: return [2 /*return*/];
+                if (!(grade <= 0 || subjectID <= 0 || questionsQuantity <= 0)) return [3 /*break*/, 2];
+                //check for incorrect values
+                res.status(400);
+                res.send('incorrect request parameters');
+                return [3 /*break*/, 4];
+            case 2: return [4 /*yield*/, (0, getAnswers_1["default"])(topic, grade, subjectID, questionsQuantity)];
+            case 3:
+                answers = _b.sent();
+                if (answers.length > 0) {
+                    res.status(200);
+                    res.send(answers);
+                }
+                else {
+                    res.status(502);
+                    res.send('could not find any tests by this request');
+                }
+                _b.label = 4;
+            case 4: return [2 /*return*/];
         }
     });
 }); });
+//get subjects
 app.get('/subjects', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var resoult;
     return __generator(this, function (_a) {
@@ -82,10 +99,13 @@ app.get('/subjects', function (req, res) { return __awaiter(void 0, void 0, void
             case 0: return [4 /*yield*/, (0, getSubjects_1["default"])()];
             case 1:
                 resoult = _a.sent();
+                // check for correct respond
                 if (resoult) {
+                    res.status(200);
                     res.send(resoult);
                 }
                 else {
+                    res.status(404);
                     res.send('error not found');
                 }
                 return [2 /*return*/];
@@ -95,4 +115,3 @@ app.get('/subjects', function (req, res) { return __awaiter(void 0, void 0, void
 app.listen(port, function () {
     console.log("Example app listening on port:".concat(port));
 });
-('http://localhost:3000/?topic=%D1%83%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B0%20%D0%B2%20%D1%83%D0%BC%D0%BE%D0%B2%D0%B0%D1%85%20%D0%B4%D0%B5%D1%81%D1%82%D0%B0%D0%BB%D1%96%D0%BD%D1%96%D0%B7%D0%B0%D1%86%D1%96%D1%97&grade=11&subjectID=8&questionsQuantity=23');

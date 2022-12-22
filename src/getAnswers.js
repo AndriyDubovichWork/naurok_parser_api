@@ -60,19 +60,12 @@ var getAnswers = function (topic, grade, subjectID, questionsQuantity) { return 
                 return [4 /*yield*/, (0, getAllPages_1["default"])(page, topic, grade, subjectID)];
             case 4:
                 AllPagesData = _a.sent();
-                // console.log(AllPagesData[0][0]);
                 if (typeof AllPagesData === 'string') {
                     return [2 /*return*/, AllPagesData];
                 }
                 return [4 /*yield*/, (0, getTestsWithSamequestionsQuantity_1["default"])(AllPagesData, questionsQuantity)];
             case 5:
                 TestsWithCorrectQuestionsQuantity = _a.sent();
-                // const matched = await getMatchedByQuestion(
-                //   page,
-                //   TestsWithCorrectQuestionsQuantity,
-                //   'Здатність організмів'
-                // );
-                // console.log(matched);
                 browser.close();
                 return [2 /*return*/, TestsWithCorrectQuestionsQuantity];
         }

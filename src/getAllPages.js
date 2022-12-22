@@ -56,9 +56,11 @@ var getAllPages = function (page, query, grade, subjectId) { return __awaiter(vo
             case 3:
                 nextPageArrow = (_e.sent())[0];
                 if (!!nextPageArrow) return [3 /*break*/, 5];
+                // if single page
                 _b = (_a = allTests).push;
                 return [4 /*yield*/, (0, getTests_1["default"])(page)];
             case 4:
+                // if single page
                 _b.apply(_a, [_e.sent()]);
                 pageNumber++;
                 return [3 /*break*/, 9];
