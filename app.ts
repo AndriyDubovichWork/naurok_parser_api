@@ -31,11 +31,18 @@ app.use(allowCrossDomain);
 app.get('/', async (req, res) => {
 	const { topic, grade, subjectID, questionsQuantity } = req.query;
 
-	//check for correct input
 	if (!topic || !grade || !subjectID || !questionsQuantity) {
+		//check for missing parameters
 		res.status(400);
-		res.send('incorrect request');
+		res.send('incorrect request (missing some parameters)');
+	} else if (grade <= 0 || subjectID <= 0 || questionsQuantity <= 0) {
+		//check for incorrect values
+
+		res.status(400);
+		res.send('incorrect request parameters');
 	} else {
+		// if every values is ok
+
 		const answers = await getAnswers(topic, grade, subjectID, questionsQuantity);
 
 		if (answers.length > 0) {
@@ -43,7 +50,7 @@ app.get('/', async (req, res) => {
 			res.send(answers);
 		} else {
 			res.status(502);
-			res.send('could not find anything');
+			res.send('could not find any tests by this request');
 		}
 	}
 });
