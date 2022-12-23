@@ -3,6 +3,8 @@ import getAnswers from './src/getAnswers';
 import getSubjects from './src/getSubjects';
 const express = require('express');
 
+//change node to 18
+
 const app = express();
 const port = process.env.PORT || 3000;
 const cors = require('cors');
