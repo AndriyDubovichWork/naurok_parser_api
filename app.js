@@ -40,6 +40,7 @@ exports.__esModule = true;
 var getAnswers_1 = require("./src/getAnswers");
 var getSubjects_1 = require("./src/getSubjects");
 var express = require('express');
+//change node to 18
 var app = express();
 var port = process.env.PORT || 3000;
 var cors = require('cors');
