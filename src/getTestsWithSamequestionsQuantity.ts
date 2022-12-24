@@ -1,5 +1,3 @@
-// import { testType } from './types';
-
 const getTestsWithSamequestionsQuantity = (input: any, NumberOfQuestions: string) => {
 	const res = [];
 	input.map((page) => {
