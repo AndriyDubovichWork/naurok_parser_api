@@ -1,5 +1,5 @@
 {
-	"version": 3,
+	"version": 1.9,
 	"builds": [{ "src": "./app.ts", "use": "@vercel/node" }],
 	"routes": [
 		{
