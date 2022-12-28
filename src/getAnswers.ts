@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const getAllPages = require('./getAllPages');
 // const getMatchedByQuestion = require('./getMatchedByQuestion');
 const getTestsWithSamequestionsQuantity = require('./getTestsWithSamequestionsQuantity');
