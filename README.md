@@ -27,7 +27,7 @@
   }[ ]
 
 
-* /subjects
+# * /subjects
 
 
 ## method : get
