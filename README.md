@@ -24,7 +24,7 @@
     questionsQuantity:string;
     linkText:string;
     link:string;
-  }[]
+  }[ ]
 
 
 * /subjects
@@ -41,6 +41,6 @@
   {
     id:number;
     subject:string;
-  }[]
+  }[ ]
 
 
