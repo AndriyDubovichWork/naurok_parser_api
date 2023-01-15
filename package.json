@@ -2,16 +2,16 @@
 	"name": "naurok_parser_back",
 	"version": "1.0.0",
 	"description": "",
-	"main": "app.ts",
+	"main": "index.ts",
 	"engines": {
 		"node": "18.x"
 	},
 	"scripts": {
 		"start": "yarn buildNStart",
-		"dev": "nodemon app.ts",
+		"dev": "nodemon index.ts",
 		"preDeploy": "yarn build && yarn startJS",
-		"build": "tsc app.ts",
-		"startJS": "node app.js",
+		"build": "tsc index.ts",
+		"startJS": "node index.js",
 		"buildNStart": "yarn build & yarn startJS",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
