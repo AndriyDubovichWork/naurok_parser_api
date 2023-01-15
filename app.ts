@@ -1,6 +1,6 @@
-// import getTests from './src/getTests';
-const getAnswers = require('./src/getAnswers').default;
-const getSubjects = require('./src/getSubjects').default;
+// import getTests from './api/getTests';
+const getAnswers = require('./api/getAnswers').default;
+const getSubjects = require('./api/getSubjects').default;
 const express = require('express');
 
 //change node to 18

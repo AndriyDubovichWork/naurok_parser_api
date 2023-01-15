@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,10 +34,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-// import getTests from './src/getTests';
-var getAnswers_1 = require("./src/getAnswers");
-var getSubjects_1 = require("./src/getSubjects");
+var _this = this;
+// import getTests from './api/getTests';
+var getAnswers = require('./api/getAnswers')["default"];
+var getSubjects = require('./api/getSubjects')["default"];
 var express = require('express');
 //change node to 18
 var app = express();
@@ -59,7 +58,7 @@ var allowCrossDomain = function (req, res, next) {
 };
 app.use(allowCrossDomain);
 //Get answers
-app.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get('/', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var _a, topic, grade, subjectID, questionsQuantity, answers;
     return __generator(this, function (_b) {
         switch (_b.label) {
@@ -76,7 +75,7 @@ app.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 res.status(400);
                 res.send('incorrect request parameters');
                 return [3 /*break*/, 4];
-            case 2: return [4 /*yield*/, (0, getAnswers_1["default"])(topic, grade, subjectID, questionsQuantity)];
+            case 2: return [4 /*yield*/, getAnswers(topic, grade, subjectID, questionsQuantity)];
             case 3:
                 answers = _b.sent();
                 if (answers.length > 0) {
@@ -93,11 +92,11 @@ app.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, func
     });
 }); });
 //get subjects
-app.get('/subjects', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get('/subjects', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var resoult;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, getSubjects_1["default"])()];
+            case 0: return [4 /*yield*/, getSubjects()];
             case 1:
                 resoult = _a.sent();
                 // check for correct respond

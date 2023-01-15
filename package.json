@@ -4,10 +4,10 @@
 	"description": "",
 	"main": "app.ts",
 	"engines": {
-		"node": "16.x"
+		"node": "18.x"
 	},
 	"scripts": {
-		"start": "yart buildNStart",
+		"start": "yarn buildNStart",
 		"dev": "nodemon app.ts",
 		"preDeploy": "yarn build && yarn startJS",
 		"build": "tsc app.ts",
