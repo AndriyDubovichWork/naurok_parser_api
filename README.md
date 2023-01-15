@@ -2,13 +2,12 @@
 
 ## End POINTS:
 
-# * / 
-
+# \* /
 
 ## method: get
 
-
 ## params:
+
 ### -topic:topic of searched theme(string)
 
 ### -grade:grade to search(number)
@@ -17,30 +16,25 @@
 
 ### -questionsQuantity:questionsQuantity(number)
 
-
-
 ## response:
-  {
-    questionsQuantity:string;
-    linkText:string;
-    link:string;
-  }[ ]
 
+{
+questionsQuantity:string;
+linkText:string;
+link:string;
+}[ ]
 
-# * /subjects
-
+# \* /subjects
 
 ## method : get
 
-
 ## params:
-###  no Params
 
+### no Params
 
 ## response:
-  {
-    id:number;
-    subject:string;
-  }[ ]
 
-
+{
+id:number;
+subject:string;
+}[ ]

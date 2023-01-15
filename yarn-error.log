@@ -22,7 +22,7 @@ npm manifest:
     "name": "naurok_parser_back",
     "version": "1.0.0",
     "description": "",
-    "main": "/api/app.ts",
+    "main": "/src/app.ts",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
     },
