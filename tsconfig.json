@@ -6,8 +6,7 @@
 		"target": "es6",
 		"moduleResolution": "node",
 		"sourceMap": true,
-		"outDir": "dist"
+		"outDir": "./api"
 	},
-
 	"lib": ["es2015"]
 }

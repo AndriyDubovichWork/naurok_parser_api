@@ -10,8 +10,8 @@
 		"start": "yarn buildNStart",
 		"dev": "nodemon index.ts",
 		"preDeploy": "yarn build && yarn startJS",
-		"build": "tsc index.ts",
-		"startJS": "node index.js",
+		"build": "tsc",
+		"startJS": "node ./api/index.js",
 		"buildNStart": "yarn build & yarn startJS",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
