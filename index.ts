@@ -2,7 +2,6 @@
 const getAnswers = require('./src/getAnswers').default;
 const getSubjects = require('./src/getSubjects').default;
 const express = require('express');
-
 //change node to 18
 
 const app = express();

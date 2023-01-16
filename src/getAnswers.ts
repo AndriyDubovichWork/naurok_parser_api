@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const getAllPages = require('./getAllPages');
 // const getMatchedByQuestion = require('./getMatchedByQuestion');
 const getTestsWithSamequestionsQuantity = require('./getTestsWithSamequestionsQuantity');
-const PCR = require('puppeteer-chromium-resolver');
+const chromium = require('chrome-aws-lambda');
 
 const getAnswers = async (
 	topic: string,
@@ -13,6 +13,7 @@ const getAnswers = async (
 	const browser = await puppeteer.launch({
 		headless: true,
 		defaultViewport: null,
+		executablePath: await chromium.executablePath,
 		args: ['--no-sandbox', '--headless'],
 	});
 	const page = await browser.newPage();
