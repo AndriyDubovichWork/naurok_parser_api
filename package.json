@@ -11,7 +11,7 @@
 		"dev": "nodemon index.ts",
 		"preDeploy": "yarn build && yarn startJS",
 		"build": "tsc",
-		"startJS": "node ./api/index.js",
+		"startJS": "node index.js",
 		"buildNStart": "yarn build & yarn startJS",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
