@@ -6,7 +6,11 @@ const getSubjects = async () => {
 		defaultViewport: null,
 		args: ['--no-sandbox', '--headless'],
 	});
-	const page = await browser.newPage();
+	const page = await browser.newPage({
+		headless: true,
+		defaultViewport: null,
+		args: ['--no-sandbox', '--headless', '--disable-setuid-sandbox'],
+	});
 	await page.setDefaultNavigationTimeout(0);
 	await page.goto(
 		'https://naurok.com.ua/site/search-resources?q=%D0%B0%D0%B4%D0%B0%D0%BF%D1%82%D0%B0%D1%86%D1%96%D1%8F&type%5B%5D=test&grade%5B%5D=11&subject%5B%5D=3'

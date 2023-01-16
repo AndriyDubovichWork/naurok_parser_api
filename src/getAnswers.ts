@@ -12,7 +12,7 @@ const getAnswers = async (
 	const browser = await puppeteer.launch({
 		headless: true,
 		defaultViewport: null,
-		args: ['--no-sandbox', '--headless'],
+		args: ['--no-sandbox', '--headless', '--disable-setuid-sandbox'],
 	});
 	const page = await browser.newPage();
 	await page.setDefaultNavigationTimeout(0);
