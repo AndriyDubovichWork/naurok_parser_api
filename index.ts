@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use(
 	cors({
-		origin: 'http://localhost',
+		origin: 'https://naurok-parser-api.vercel.app',
 	})
 );
 const allowCrossDomain = function (req, res, next) {
