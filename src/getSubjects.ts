@@ -1,11 +1,26 @@
-const puppeteer = require('puppeteer');
+let chrome: any = {};
+let puppeteer;
+
+if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+	chrome = require('chrome-aws-lambda');
+	puppeteer = require('puppeteer-core');
+} else {
+	puppeteer = require('puppeteer');
+}
 
 const getSubjects = async () => {
-	const browser = await puppeteer.launch({
-		headless: true,
-		defaultViewport: null,
-		args: ['--no-sandbox', '--headless'],
-	});
+	let options: any = {};
+
+	if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+		options = {
+			args: [...chrome.args, '--no-sandbox', '--headless'],
+			defaultViewport: chrome.defaultViewport,
+			executablePath: await chrome.executablePath,
+			headless: true,
+			ignoreHTTPSErrors: true,
+		};
+	}
+	const browser = await puppeteer.launch();
 	const page = await browser.newPage({
 		headless: true,
 		defaultViewport: null,
