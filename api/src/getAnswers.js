@@ -9,13 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const puppeteer = require('puppeteer-core');
-const getAllPages = require('./getAllPages');
+const puppeteer = require('puppeteer');
+const getAllPages = require('./getAllPages').default;
 // const getMatchedByQuestion = require('./getMatchedByQuestion');
-const getTestsWithSamequestionsQuantity = require('./getTestsWithSamequestionsQuantity');
+const getTestsWithSamequestionsQuantity = require('./getTestsWithSamequestionsQuantity').default;
 const getAnswers = (topic, grade, subjectID, questionsQuantity) => __awaiter(void 0, void 0, void 0, function* () {
     const browser = yield puppeteer.launch({
-        executablePath: '/chrome',
         headless: true,
         defaultViewport: null,
         args: ['--no-sandbox', '--single-process', '--no-zygote', '--disable-setuid-sandbox'],

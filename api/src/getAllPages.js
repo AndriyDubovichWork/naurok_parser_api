@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const getTests = require('./getTests');
+const getTests = require('./getTests').default;
 const getAllPages = (page, query, grade, subjectId) => __awaiter(void 0, void 0, void 0, function* () {
     let pageNumber = 1;
     const allTests = [];

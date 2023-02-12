@@ -7,11 +7,10 @@
 		"node": "18.x"
 	},
 	"scripts": {
-		"start": "nodemon index.ts",
+		"start": "node ./api/index.js",
 		"dev": "nodemon index.ts",
 		"preDeploy": "yarn build && yarn startJS",
 		"build": "tsc",
-		"startJS": "node index.js",
 		"buildNStart": "yarn build & node node_modules/puppeteer/install.js & yarn startJS",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
