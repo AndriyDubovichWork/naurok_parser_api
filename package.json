@@ -7,7 +7,7 @@
 		"node": "18.x"
 	},
 	"scripts": {
-		"start": "yarn buildNStart",
+		"start": "nodemon index.ts",
 		"dev": "nodemon index.ts",
 		"preDeploy": "yarn build && yarn startJS",
 		"build": "tsc",

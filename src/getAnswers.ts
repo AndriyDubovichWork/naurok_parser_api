@@ -1,7 +1,7 @@
-const puppeteer = require('puppeteer-core');
-const getAllPages = require('./getAllPages');
+const puppeteer = require('puppeteer');
+const getAllPages = require('./getAllPages').default;
 // const getMatchedByQuestion = require('./getMatchedByQuestion');
-const getTestsWithSamequestionsQuantity = require('./getTestsWithSamequestionsQuantity');
+const getTestsWithSamequestionsQuantity = require('./getTestsWithSamequestionsQuantity').default;
 
 const getAnswers = async (
 	topic: string,
@@ -10,7 +10,6 @@ const getAnswers = async (
 	questionsQuantity: string
 ) => {
 	const browser = await puppeteer.launch({
-		executablePath: '/chrome',
 		headless: true,
 		defaultViewport: null,
 		args: ['--no-sandbox', '--single-process', '--no-zygote', '--disable-setuid-sandbox'],
