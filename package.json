@@ -9,10 +9,7 @@
 	"scripts": {
 		"start": "node ./api/index.js",
 		"dev": "nodemon index.ts",
-		"preDeploy": "yarn build && yarn startJS",
-		"build": "tsc",
-		"buildNStart": "yarn build & node node_modules/puppeteer/install.js & yarn startJS",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build": "tsc"
 	},
 	"keywords": [],
 	"author": "Andriy Dubovich",
@@ -24,12 +21,13 @@
 	"dependencies": {
 		"@types/express": "^4.17.14",
 		"@types/puppeteer": "^5.4.7",
-		"chrome-aws-lambda": "^10.0.0",
+		"chrome-aws-lambda": "^6.0.0",
+		"chromium": "^3.0.3",
 		"cors": "^2.8.5",
 		"express": "^4.18.2",
 		"nodemon": "^2.0.20",
 		"puppeteer-chromium-resolver": "^19.1.0",
-		"puppeteer-core": "^10.0.0",
+		"puppeteer-core": "^6.0.0",
 		"ts-node": "^10.9.1",
 		"xvfb": "^0.4.0"
 	}

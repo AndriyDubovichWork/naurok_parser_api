@@ -21,9 +21,12 @@ const getAnswers = async (
 
 	if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
 		options = {
+			executablePath: './node_modules/chromium/lib/chromium/chrome-linux/chrome',
+
 			args: [...chrome.args, '--hide-scrollbars', '--disable-web-security'],
 			defaultViewport: chrome.defaultViewport,
-			executablePath: await chrome.executablePath,
+			ignoreDefaultArgs: ['--disable-extensions'],
+			// executablePath: await chrome.executablePath,
 			headless: true,
 			ignoreHTTPSErrors: true,
 		};
