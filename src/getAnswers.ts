@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const getAllPages = require('./getAllPages');
 // const getMatchedByQuestion = require('./getMatchedByQuestion');
 const getTestsWithSamequestionsQuantity = require('./getTestsWithSamequestionsQuantity');
@@ -10,9 +10,10 @@ const getAnswers = async (
 	questionsQuantity: string
 ) => {
 	const browser = await puppeteer.launch({
+		executablePath: '/chrome',
 		headless: true,
 		defaultViewport: null,
-		args: ['--no-sandbox', '--headless', '--disable-setuid-sandbox'],
+		args: ['--no-sandbox', '--single-process', '--no-zygote', '--disable-setuid-sandbox'],
 	});
 	const page = await browser.newPage();
 	await page.setDefaultNavigationTimeout(0);

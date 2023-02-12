@@ -9,7 +9,7 @@ const getSubjects = async () => {
 	const page = await browser.newPage({
 		headless: true,
 		defaultViewport: null,
-		args: ['--no-sandbox', '--headless', '--disable-setuid-sandbox'],
+		args: ['--no-sandbox', '--single-process', '--no-zygote', '--disable-setuid-sandbox'],
 	});
 	await page.setDefaultNavigationTimeout(0);
 	await page.goto(

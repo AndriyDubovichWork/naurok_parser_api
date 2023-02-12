@@ -1,10 +1,21 @@
 {
 	"version": 2,
-	"builds": [{ "src": "./index.js", "use": "@vercel/node" }],
+	"buildCommand": "yarn build",
+	"installCommand": "yarn",
+	"outputDirectory": "api",
+	"builds": [
+		{
+			"src": "api/index.js",
+			"use": "@vercel/node",
+			"config": {
+				"includedFiles": ["api/**"]
+			}
+		}
+	],
 	"routes": [
 		{
 			"src": "/(.*)",
-			"dest": "/"
+			"dest": "api/index.js"
 		}
 	]
 }

@@ -20,7 +20,7 @@ process.setMaxListeners(4000);
 app.use(express.json());
 //CORS
 app.use(cors({
-    origin: 'http://localhost',
+    origin: 'https://naurok-parser-api.vercel.app',
 }));
 const allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');

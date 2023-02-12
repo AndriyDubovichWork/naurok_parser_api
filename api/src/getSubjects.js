@@ -16,7 +16,11 @@ const getSubjects = () => __awaiter(void 0, void 0, void 0, function* () {
         defaultViewport: null,
         args: ['--no-sandbox', '--headless'],
     });
-    const page = yield browser.newPage();
+    const page = yield browser.newPage({
+        headless: true,
+        defaultViewport: null,
+        args: ['--no-sandbox', '--single-process', '--no-zygote', '--disable-setuid-sandbox'],
+    });
     yield page.setDefaultNavigationTimeout(0);
     yield page.goto('https://naurok.com.ua/site/search-resources?q=%D0%B0%D0%B4%D0%B0%D0%BF%D1%82%D0%B0%D1%86%D1%96%D1%8F&type%5B%5D=test&grade%5B%5D=11&subject%5B%5D=3');
     const Subjects = yield page.evaluate(() => {
