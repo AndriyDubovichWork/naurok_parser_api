@@ -9,16 +9,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const puppeteer = require('puppeteer');
 const getAllPages = require('./getAllPages').default;
 // const getMatchedByQuestion = require('./getMatchedByQuestion');
 const getTestsWithSamequestionsQuantity = require('./getTestsWithSamequestionsQuantity').default;
+let chrome = {};
+let puppeteer;
+if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+    chrome = require('chrome-aws-lambda');
+    puppeteer = require('puppeteer-core');
+}
+else {
+    puppeteer = require('puppeteer');
+}
 const getAnswers = (topic, grade, subjectID, questionsQuantity) => __awaiter(void 0, void 0, void 0, function* () {
-    const browser = yield puppeteer.launch({
-        headless: true,
-        defaultViewport: null,
-        args: ['--no-sandbox', '--single-process', '--no-zygote', '--disable-setuid-sandbox'],
-    });
+    let options = {};
+    if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+        options = {
+            args: [...chrome.args, '--hide-scrollbars', '--disable-web-security'],
+            defaultViewport: chrome.defaultViewport,
+            executablePath: yield chrome.executablePath,
+            headless: true,
+            ignoreHTTPSErrors: true,
+        };
+    }
+    const browser = yield puppeteer.launch(options);
     const page = yield browser.newPage();
     yield page.setDefaultNavigationTimeout(0);
     // get all tests links by request

@@ -9,13 +9,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const puppeteer = require('puppeteer');
+let chrome = {};
+let puppeteer;
+if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+    chrome = require('chrome-aws-lambda');
+    puppeteer = require('puppeteer-core');
+}
+else {
+    puppeteer = require('puppeteer');
+}
 const getSubjects = () => __awaiter(void 0, void 0, void 0, function* () {
-    const browser = yield puppeteer.launch({
-        headless: true,
-        defaultViewport: null,
-        args: ['--no-sandbox', '--headless'],
-    });
+    let options = {};
+    if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+        options = {
+            args: [...chrome.args, '--no-sandbox', '--headless'],
+            defaultViewport: chrome.defaultViewport,
+            executablePath: yield chrome.executablePath,
+            headless: true,
+            ignoreHTTPSErrors: true,
+        };
+    }
+    const browser = yield puppeteer.launch();
     const page = yield browser.newPage({
         headless: true,
         defaultViewport: null,

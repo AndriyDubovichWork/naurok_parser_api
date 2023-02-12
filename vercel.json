@@ -1,7 +1,7 @@
 {
 	"version": 2,
 	"buildCommand": "yarn build",
-	"installCommand": "yarn && npm install",
+	"installCommand": "yarn",
 	"outputDirectory": "api",
 	"builds": [
 		{

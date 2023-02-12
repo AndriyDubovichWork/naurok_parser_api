@@ -1,7 +1,6 @@
 const getAllPages = require('./getAllPages').default;
 // const getMatchedByQuestion = require('./getMatchedByQuestion');
 const getTestsWithSamequestionsQuantity = require('./getTestsWithSamequestionsQuantity').default;
-
 let chrome: any = {};
 let puppeteer;
 
@@ -22,7 +21,7 @@ const getAnswers = async (
 
 	if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
 		options = {
-			args: [...chrome.args, '--no-sandbox', '--headless'],
+			args: [...chrome.args, '--hide-scrollbars', '--disable-web-security'],
 			defaultViewport: chrome.defaultViewport,
 			executablePath: await chrome.executablePath,
 			headless: true,
