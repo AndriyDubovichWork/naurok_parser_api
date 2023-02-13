@@ -1,28 +1,18 @@
-let chrome: any = {};
-let puppeteer;
-
-if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-	chrome = require('chrome-aws-lambda');
-	puppeteer = require('puppeteer-core');
-} else {
-	puppeteer = require('puppeteer');
-}
+const puppeteer = require('puppeteer');
 
 const getSubjects = async () => {
-	let options: any = {};
-
-	if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-		options = {
-			executablePath: './node_modules/chromium/lib/chromium/chrome-linux/chrome',
-
-			args: [...chrome.args, '--hide-scrollbars', '--disable-web-security'],
-			defaultViewport: chrome.defaultViewport,
-			ignoreDefaultArgs: ['--disable-extensions'],
-			// executablePath: await chrome.executablePath,
-			headless: true,
-			ignoreHTTPSErrors: true,
-		};
-	}
+	const options = {
+		args: [
+			'--disable-gpu',
+			'--disable-dev-shm-usage',
+			'--disable-setuid-sandbox',
+			'--no-first-run',
+			'--no-sandbox',
+			'--no-zygote',
+		],
+		headless: true,
+		ignoreHTTPSErrors: true,
+	};
 	const browser = await puppeteer.launch();
 	const page = await browser.newPage(options);
 	await page.setDefaultNavigationTimeout(0);
